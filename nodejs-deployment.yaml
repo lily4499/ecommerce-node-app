@@ -11,14 +11,14 @@ spec:
     metadata:
       labels:
         app: ecommerce-node-app
-       annotations:
+      annotations:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
-        prometheus.io/port: "3000"      
+        prometheus.io/port: "3000"
     spec:
       containers:
       - name: ecommerce-node-app
-        image: laly9999/ecommerce-node-app:v1.0
+        image: $IMAGE_NAME:$IMAGE_TAG
         ports:
         - containerPort: 3000
 ---
