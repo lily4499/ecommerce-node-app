@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: ecommerce-node-app
-        image: $IMAGE_NAME:$IMAGE_TAG
+        image: laly9999/ecommerce-node-app:v1.0
         ports:
         - containerPort: 3000
 ---
