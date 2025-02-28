@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommerce-node-app-deployment
+  name: nodejs-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce-node-app
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: ecommerce-node-app
+        app: nodejs-app
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics"
         prometheus.io/port: "3000"
     spec:
       containers:
-      - name: ecommerce-node-app
+      - name: nodejs-app
         image: laly9999/ecommerce-node-app:v1.0
         ports:
         - containerPort: 3000
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ecommerce-node-app-service
+  name: nodejs-app
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 3000
       targetPort: 3000
   selector:
-    app: ecommerce-node-app
+    app: nodejs-app
