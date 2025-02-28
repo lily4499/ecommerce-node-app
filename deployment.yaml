@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-node-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-node-app
+  template:
+    metadata:
+      labels:
+        app: ecommerce-node-app
+    spec:
+      containers:
+      - name: ecommerce-node-app
+        image: laly9999/ecommerce-node-app:v1.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecommerce-node-app-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: ecommerce-node-app

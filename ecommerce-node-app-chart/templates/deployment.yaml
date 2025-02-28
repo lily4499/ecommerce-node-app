@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ecommerce-node-app-chart.fullname" . }}
+  labels:
+    {{- include "ecommerce-node-app-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ecommerce-node-app-chart.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ecommerce-node-app-chart.name" . }}
+    spec:
+      containers:
+        - name: {{ include "ecommerce-node-app-chart.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 3000

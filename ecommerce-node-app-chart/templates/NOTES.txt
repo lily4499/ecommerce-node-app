@@ -1,0 +1,8 @@
+Your Node.js app has been deployed!
+
+To find out the application URL, run:
+
+NOTE: It may take a few minutes for the external load balancer IP to be assigned.
+
+export EXTERNAL_IP=$(kubectl get svc {{ include "ecommerce-node-app-chart.fullname" . }} -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+echo "Application URL: http://$EXTERNAL_IP"

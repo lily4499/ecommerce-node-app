@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: laly9999/ecommerce-node-app
+  pullPolicy: IfNotPresent
+  tag: "v5.0"
+
+service:
+  type: LoadBalancer
+  port: 80
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+
+# Existing values ...
+
+ingress:
+  enabled: false
+  host: helm.lilianedevops.online
+  annotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
